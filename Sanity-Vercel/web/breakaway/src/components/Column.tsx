@@ -7,7 +7,6 @@ type Props = {
 
 const Column = (props: Props) => {
   if (props.sites) {
-    console.log(props.sites)
     return (
       <ul>
         {
