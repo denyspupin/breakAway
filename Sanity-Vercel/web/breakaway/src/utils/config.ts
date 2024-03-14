@@ -1,5 +1,5 @@
 export const sanityConfig = {
-  projectId: process.env.NEXT_PUBLIC_SANITY_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  apiVersion: process.env.NEXT_PUBLIC_SANITY_VERSION
+  projectId: process.env.SANITY_ID,
+  dataset: process.env.SANITY_DATASET,
+  apiVersion: process.env.SANITY_VERSION
 }

@@ -1,21 +1,17 @@
 import Column from "@/components/Column";
 import Header from "@/components/Header";
 import { client } from "@/sanityClient";
-import { Inter } from "next/font/google";
-import { useEffect, useState } from "react";
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
+import Site from "@/types/site";
 
-const inter = Inter({ subsets: ["latin"] });
+export const getServerSideProps = (async () => {
+  const sites: Site[] = await client.fetch('*[_type == "site"]{_id, name}');
+  return { props: { sites } };
+}) satisfies GetServerSideProps<{sites: Site[]}>;
 
-export default function Home() {
-  const [sites, setSites] = useState();
-
-  useEffect(() => {
-    (async function() {
-      const sites = await client.fetch('*[_type == "site"]{name, _id}');
-      if (sites) setSites(sites);
-    })();
-  }, []);
-
+export default function Home({
+  sites,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className="flex flex-col flex-1 h-[100dvh]">
       <Header />
