@@ -1,17 +1,17 @@
 import { SiteStaticDataHandler } from '@/handlers/SiteStaticDataHandler';
 import Site from '@/types/site';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
 import React from 'react';
 
-export const getServerSideProps = (async () => {
+export const getStaticProps = (async () => {
   const sites = await SiteStaticDataHandler.GetSites();
   return {props: {sites}};
-}) satisfies GetServerSideProps<{sites: Site[]}>;
+}) satisfies GetStaticProps<{sites: Site[]}>;
 
 export default function Index({
   sites
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
       <ul>
