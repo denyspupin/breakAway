@@ -1,4 +1,6 @@
 export default interface Site {
-    id: string;
+    slug: string;
     name: string;
+    slogan: string;
+    primaryColor: string;
 }
