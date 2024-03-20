@@ -1,6 +1,8 @@
 import { SiteStaticDataHandler } from '@/handlers/SiteStaticDataHandler';
+import Product from '@/types/product';
 import Site from '@/types/site';
 import { GetStaticPaths, GetStaticPathsContext, GetStaticProps, GetStaticPropsContext, GetStaticPropsResult, InferGetStaticPropsType } from 'next';
+import Link from 'next/link';
 import React from 'react';
 
 
@@ -35,6 +37,17 @@ export default function Index(
         <p className='font-bold' style={{backgroundColor: site.primaryColor}}>{site.slogan}</p>
         {site.name}
       </header>
+      <main>
+        <ul>
+          {
+            site!.products.map((product, index) => (
+              <li key={index}>
+                <Link href={`/products/${product._id}`} hrefLang='en' className='underline'>{product.name}</Link>
+              </li>
+            ))
+          }
+        </ul>
+      </main>
     </div>
   )
 }
